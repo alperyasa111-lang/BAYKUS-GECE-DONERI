@@ -1,1 +1,699 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lux Brasserie - Modern Restoran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, .title {
+            font-family: 'Playfair Display', serif;
+        }
 
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .menu-card {
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+        }
+
+        .reserve-btn-active {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 100%);
+            color: #1a1a1a;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 scroll-smooth">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-utensils text-2xl text-yellow-600"></i>
+                    <span class="title text-2xl font-bold text-gray-900">Lux Brasserie</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#menu" class="nav-link text-gray-700 font-medium">Menü</a>
+                    <a href="#reserve" class="nav-link text-gray-700 font-medium">Rezervasyon</a>
+                    <a href="#about" class="nav-link text-gray-700 font-medium">Hakkında</a>
+                    <a href="#contact" class="nav-link text-gray-700 font-medium">İletişim</a>
+                </div>
+
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#menu" class="block px-3 py-2 rounded hover:bg-gray-100">Menü</a>
+                <a href="#reserve" class="block px-3 py-2 rounded hover:bg-gray-100">Rezervasyon</a>
+                <a href="#about" class="block px-3 py-2 rounded hover:bg-gray-100">Hakkında</a>
+                <a href="#contact" class="block px-3 py-2 rounded hover:bg-gray-100">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-32 pb-16 px-4 text-white mt-16">
+        <div class="max-w-6xl mx-auto text-center animate-fade-up">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Lux Brasserie</h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">Modern Aşçılık, Klasik Lezzetler</p>
+            <a href="#menu" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-8 rounded-full btn-primary">
+                Menüyü Keşfet
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="title text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900">Menümüz</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Şefimiz tarafından özenle hazırlanmış, seçkin malzemelerle oluşturulan lezzetli yemekler</p>
+
+            <!-- Menu Filters -->
+            <div class="flex justify-center gap-3 mb-12 flex-wrap">
+                <button class="menu-filter px-6 py-2 rounded-full bg-yellow-600 text-white font-medium" data-filter="all">
+                    Tümü
+                </button>
+                <button class="menu-filter px-6 py-2 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-yellow-600 hover:text-white" data-filter="appetizer">
+                    Başlangıçlar
+                </button>
+                <button class="menu-filter px-6 py-2 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-yellow-600 hover:text-white" data-filter="main">
+                    Ana Yemekler
+                </button>
+                <button class="menu-filter px-6 py-2 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-yellow-600 hover:text-white" data-filter="dessert">
+                    Tatlılar
+                </button>
+                <button class="menu-filter px-6 py-2 rounded-full bg-gray-200 text-gray-800 font-medium hover:bg-yellow-600 hover:text-white" data-filter="beverage">
+                    İçecekler
+                </button>
+            </div>
+
+            <!-- Menu Items Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Appetizer 1 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="appetizer">
+                    <div class="h-48 bg-gradient-to-br from-yellow-200 to-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-leaf text-yellow-800 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Salade Niçoise</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺185</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Tuna balığı, yumurta ve zeytinle hazırlanmış Französca salatası</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">10 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appetizer 2 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="appetizer">
+                    <div class="h-48 bg-gradient-to-br from-orange-200 to-orange-100 flex items-center justify-center">
+                        <i class="fas fa-shrimp text-orange-800 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Garlic Shrimp</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺245</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Sarımsak ve limon soslu sıcak karides</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">12 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appetizer 3 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="appetizer">
+                    <div class="h-48 bg-gradient-to-br from-red-200 to-red-100 flex items-center justify-center">
+                        <i class="fas fa-pepper-hot text-red-800 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Mozzarella Sticks</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺165</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Çıtır mozarella çubukları domates sosuyla</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">8 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Course 1 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="main">
+                    <div class="h-48 bg-gradient-to-br from-red-300 to-pink-200 flex items-center justify-center">
+                        <i class="fas fa-drumstick-bite text-red-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Steak Ribeye</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺485</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Közde pişmiş premium steak, truffle mantarı ve patates</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">20 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Course 2 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="main">
+                    <div class="h-48 bg-gradient-to-br from-blue-300 to-cyan-200 flex items-center justify-center">
+                        <i class="fas fa-fish text-blue-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Salmon Grillé</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺395</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Taze somon balığı, limon ve dill sosyla birlikte</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">18 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Course 3 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="main">
+                    <div class="h-48 bg-gradient-to-br from-green-300 to-emerald-200 flex items-center justify-center">
+                        <i class="fas fa-leaf text-green-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Pasta Carbonara</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺285</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">İtalyan klasiği, güzel kremalı parmasan sosuyla</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">15 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dessert 1 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="dessert">
+                    <div class="h-48 bg-gradient-to-br from-purple-300 to-pink-200 flex items-center justify-center">
+                        <i class="fas fa-cake-candles text-purple-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Chocolate Lava</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺145</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Sıcak çikolatalı kek, vanilya dondurması eşliğinde</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">12 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dessert 2 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="dessert">
+                    <div class="h-48 bg-gradient-to-br from-yellow-300 to-amber-200 flex items-center justify-center">
+                        <i class="fas fa-ice-cream text-yellow-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Vanilla Panna Cotta</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺125</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">İtalyan krema tatlısı, yaban mersinli</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">5 dk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dessert 3 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="dessert">
+                    <div class="h-48 bg-gradient-to-br from-orange-300 to-yellow-200 flex items-center justify-center">
+                        <i class="fas fa-cookie text-orange-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Crème Brûlée</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺155</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Karamelleşmiş vanilya kreması</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">8 mk</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverage 1 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="beverage">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-pink-300 flex items-center justify-center">
+                        <i class="fas fa-wine-glass text-red-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Merlot 2018</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺95</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Dünya Şarapları - Fransa, Bordeaux</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-droplet text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">250ml</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverage 2 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="beverage">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-amber-300 flex items-center justify-center">
+                        <i class="fas fa-beer text-yellow-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Craft Lager</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺65</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Özel tasarım yerel bira</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-droplet text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">500ml</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beverage 3 -->
+                <div class="menu-card bg-white rounded-lg overflow-hidden shadow-md" data-category="beverage">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center">
+                        <i class="fas fa-martini-glass text-blue-900 text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">Lux Martini</h3>
+                            <span class="text-yellow-600 font-bold text-lg">₺85</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Barista tarafından hazırlanan imza kokteili</p>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-droplet text-gray-400 text-sm"></i>
+                            <span class="text-gray-500 text-sm">200ml</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reserve" class="py-20 px-4 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="title text-4xl md:text-5xl font-bold text-center mb-4">Rezervasyon Yap</h2>
+            <p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">En sevdiğiniz masayı rezerve edin ve unutulmaz bir akşam geçirin</p>
+
+            <form id="reservationForm" class="bg-gray-800 rounded-lg p-8 space-y-6 glass-effect">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium mb-2">Adınız Soyadınız</label>
+                        <input type="text" id="fullName" name="fullName" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                            placeholder="Ahmet Yılmaz">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                            placeholder="ahmet@example.com">
+                    </div>
+
+                    <div>
+                        <label for="phone" class="block text-sm font-medium mb-2">Telefon Numarası</label>
+                        <input type="tel" id="phone" name="phone" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none"
+                            placeholder="+90 (555) 123-4567">
+                    </div>
+
+                    <div>
+                        <label for="guests" class="block text-sm font-medium mb-2">Kişi Sayısı</label>
+                        <select id="guests" name="guests" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                            <option value="">Seçiniz</option>
+                            <option value="1">1 Kişi</option>
+                            <option value="2">2 Kişi</option>
+                            <option value="3">3 Kişi</option>
+                            <option value="4">4 Kişi</option>
+                            <option value="5">5 Kişi</option>
+                            <option value="6">6 Kişi</option>
+                            <option value="7">7+ Kişi</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="date" class="block text-sm font-medium mb-2">Tarih</label>
+                        <input type="date" id="date" name="date" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label for="time" class="block text-sm font-medium mb-2">Saat</label>
+                        <select id="time" name="time" required 
+                            class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none">
+                            <option value="">Seçiniz</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="preferences" class="block text-sm font-medium mb-2">Özel İstekler</label>
+                    <textarea id="preferences" name="preferences" rows="4" 
+                        class="w-full px-4 py-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-yellow-600 focus:outline-none resize-none"
+                        placeholder="Doğum günü kutlaması, özel diyet gereksinimleri vb."></textarea>
+                </div>
+
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms" name="terms" required 
+                        class="w-4 h-4 text-yellow-600 rounded focus:ring-yellow-600">
+                    <label for="terms" class="ml-2 text-sm text-gray-300">Şartlar ve Koşulları Kabul Ediyorum</label>
+                </div>
+
+                <button type="submit" class="w-full py-3 px-6 bg-gradient-to-r from-yellow-600 to-yellow-500 text-gray-900 font-bold rounded-lg hover:from-yellow-700 hover:to-yellow-600 transition-all btn-primary">
+                    <i class="fas fa-check mr-2"></i>Rezervasyonu Tamamla
+                </button>
+
+                <div id="reservationMessage" class="hidden p-4 rounded-lg text-center font-medium"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="title text-4xl font-bold mb-6 text-gray-900">Hakkımızda</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Lux Brasserie, 2015'ten beri şehrin en seçkin restoran adresi olarak hizmet vermektedir. Şefimiz Michelin yıldızlı mutfakta eğitim almış ve dünya klasiklerini kendi tarzıyla sunmaktadır.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Her yemek, en taze ve kaliteli malzemeler kullanılarak, özel bakım ve dikkatle hazırlanmaktadır. Misafirlerimizin memnuniyeti bizim en büyük önceliğimizdir.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 mt-8">
+                        <div class="text-center">
+                            <i class="fas fa-star text-yellow-600 text-3xl mb-2"></i>
+                            <p class="font-bold text-gray-900">4.9★</p>
+                            <p class="text-gray-600 text-sm">1.2K Yorum</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-users text-yellow-600 text-3xl mb-2"></i>
+                            <p class="font-bold text-gray-900">50K+</p>
+                            <p class="text-gray-600 text-sm">Mutlu Misafir</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-award text-yellow-600 text-3xl mb-2"></i>
+                            <p class="font-bold text-gray-900">12</p>
+                            <p class="text-gray-600 text-sm">Ödül</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-yellow-600">
+                        <h3 class="font-bold text-gray-900 mb-2">🍴 Masalarda Mükemmellik</h3>
+                        <p class="text-gray-600">Her tabak bir sanat eseridir ve lezzetin yanında görsel güzellik de önemlidir.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-yellow-600">
+                        <h3 class="font-bold text-gray-900 mb-2">🌍 Global Mutfak</h3>
+                        <p class="text-gray-600">Dünyadan en iyi yemekleri, yerel tatlılarla birleştirerek sunuyoruz.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-yellow-600">
+                        <h3 class="font-bold text-gray-900 mb-2">👨‍🍳 Uzman Şefler</h3>
+                        <p class="text-gray-600">Alanlarında uzman ve yenilikçi şeflerimiz sürekli olarak menüyü güncelliyorlar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="title text-4xl md:text-5xl font-bold text-center mb-12">İletişim</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center">
+                    <i class="fas fa-map-marker-alt text-yellow-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Adres</h3>
+                    <p class="text-gray-400">Levent Mah. Barbaros Cad. No: 123<br>Beşiktaş, İstanbul</p>
+                </div>
+
+                <div class="text-center">
+                    <i class="fas fa-phone text-yellow-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Telefon</h3>
+                    <p class="text-gray-400">
+                        <a href="tel:+905551234567" class="hover:text-yellow-600">+90 (555) 123 4567</a><br>
+                        <a href="tel:+902125551234" class="hover:text-yellow-600">+90 (212) 555 1234</a>
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <i class="fas fa-clock text-yellow-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">Çalışma Saatleri</h3>
+                    <p class="text-gray-400">
+                        Pazartesi - Perşembe: 11:30 - 23:00<br>
+                        Cuma - Cumartesi: 11:30 - 00:00<br>
+                        Pazar: 12:00 - 23:00
+                    </p>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="text-center">
+                <h3 class="font-bold text-lg mb-6">Bizi Takip Edin</h3>
+                <div class="flex justify-center gap-6">
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">
+                        <i class="fab fa-facebook-f text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-yellow-600 transition-colors">
+                        <i class="fab fa-tiktok text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p>&copy; 2024 Lux Brasserie. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Menu Filter Functionality
+        const filterButtons = document.querySelectorAll('.menu-filter');
+        const menuCards = document.querySelectorAll('.menu-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-yellow-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-800');
+                });
+                button.classList.add('bg-yellow-600', 'text-white');
+                button.classList.remove('bg-gray-200', 'text-gray-800');
+
+                // Filter cards
+                const filterValue = button.getAttribute('data-filter');
+                menuCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 10);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Set minimum date to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Reservation Form Submit
+        const reservationForm = document.getElementById('reservationForm');
+        const reservationMessage = document.getElementById('reservationMessage');
+
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                guests: document.getElementById('guests').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                preferences: document.getElementById('preferences').value,
+            };
+
+            // Show success message
+            reservationMessage.classList.remove('hidden', 'bg-red-500');
+            reservationMessage.classList.add('bg-green-500');
+            reservationMessage.innerHTML = `
+                <i class="fas fa-check-circle mr-2"></i>
+                Rezervasyonunuz başarıyla kaydedildi! Lütfen onay e-mailini kontrol edin.
+            `;
+
+            // Log the data (in real app, send to backend)
+            console.log('Rezervasyon Bilgileri:', formData);
+
+            // Reset form
+            setTimeout(() => {
+                reservationForm.reset();
+                reservationMessage.classList.add('hidden');
+            }, 3000);
+        });
+
+        // Smooth Scroll Enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation on load
+        window.addEventListener('load', () => {
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease-out';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
