@@ -3,83 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baykuş Gece Döneri - Lezzetin Yeni Adresi</title>
+    <title>Baykuş Gece Döneri - Modern Döner Deneyimi</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
-            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        
-        .gradient-dark {
-            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #2D1B1B 100%);
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #e5e5e5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
-        .gradient-overlay {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(220, 20, 60, 0.8) 100%);
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
+
+        .red-glow {
+            box-shadow: 0 0 30px rgba(255, 68, 68, 0.3);
+        }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.4);
+        }
+
         .menu-card {
+            background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+            border-left: 4px solid #ff4444;
             transition: all 0.3s ease;
-            border-left: 4px solid #DC143C;
         }
-        
+
         .menu-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 10px 25px rgba(220, 20, 60, 0.2);
+            border-left: 4px solid #ff6666;
+            transform: translateX(5px);
         }
-        
-        .price-badge {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #DC143C, #8B0000);
+
+        .order-btn {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
             transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(220, 20, 60, 0.3);
-        }
-        
-        .smoke-effect {
             position: relative;
             overflow: hidden;
         }
-        
-        .smoke-bg {
-            background: radial-gradient(ellipse at center, #3D2D2D 0%, #1A0F0F 100%);
-        }
-        
-        .category-title {
-            position: relative;
-            display: inline-block;
-            color: #DC143C;
-            font-weight: bold;
-            padding-bottom: 10px;
-        }
-        
-        .category-title::after {
+
+        .order-btn::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #DC143C, #8B0000);
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
         }
-        
+
+        .order-btn:hover::before {
+            left: 100%;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 68, 68, 0.6);
+        }
+
         .nav-link {
             position: relative;
-            color: #F5DEB3;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
-        
-        .nav-link:hover {
-            color: #FFD700;
-        }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -87,589 +88,597 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #DC143C;
+            background: #ff4444;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
+
+        .smoke-effect {
+            background: radial-gradient(circle, rgba(255, 68, 68, 0.1) 0%, transparent 70%);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4444, transparent);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(255, 68, 68, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(255, 68, 68, 0.6);
+            }
+        }
+
+        .pulse-animate {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .reservation-form input,
+        .reservation-form textarea {
+            background: #2a2a2a;
+            border: 1px solid #404040;
+            color: #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .reservation-form input:focus,
+        .reservation-form textarea:focus {
+            background: #333333;
+            border-color: #ff4444;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="bg-gray-950">
+<body class="scroll-smooth">
     <!-- Navigation -->
-    <nav class="gradient-dark sticky top-0 z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-fire text-yellow-400 text-3xl"></i>
-                    <div>
-                        <h1 class="text-2xl font-black text-white">BAYKUŞ GECE DÖNERI</h1>
-                        <p class="text-xs text-amber-200">Lezzetin Yeni Adresi</p>
-                    </div>
+    <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-black/80 border-b border-red-900/30">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-red-900 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl">🦉</span>
                 </div>
-                
-                <div class="hidden md:flex space-x-8">
-                    <a href="#menu" class="nav-link">Menu</a>
-                    <a href="#iletisim" class="nav-link">İletişim</a>
-                    <a href="#rezervasyon" class="nav-link">Rezervasyon</a>
-                </div>
-                
-                <button onclick="document.getElementById('mobil-menu').classList.toggle('hidden')" class="md:hidden text-white">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <h1 class="text-2xl font-bold">
+                    <span class="gradient-text">Baykuş Gece</span>
+                    <span class="text-white"> Döneri</span>
+                </h1>
             </div>
-            
-            <!-- Mobil Menu -->
-            <div id="mobil-menu" class="hidden pb-4 md:hidden">
-                <a href="#menu" class="block py-2 text-amber-200 hover:text-yellow-300">Menu</a>
-                <a href="#iletisim" class="block py-2 text-amber-200 hover:text-yellow-300">İletişim</a>
-                <a href="#rezervasyon" class="block py-2 text-amber-200 hover:text-yellow-300">Rezervasyon</a>
+            <div class="hidden md:flex gap-8">
+                <a href="#menu" class="nav-link text-gray-300 hover:text-red-400">Menü</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-red-400">Hakkımızda</a>
+                <a href="#reservation" class="nav-link text-gray-300 hover:text-red-400">Rezervasyon</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-red-400">İletişim</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-overlay smoke-bg py-24">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="mb-8">
-                <i class="fas fa-drumstick-bite text-red-500 text-6xl mb-4"></i>
-            </div>
-            <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
-                Gecelerin En <span class="text-yellow-400">Leziz</span> Döneri
+    <section class="pt-32 pb-20 px-4 smoke-effect">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6">
+                <span class="gradient-text">Gece Boyunca</span>
+                <br>
+                <span class="text-white">Efsanevi Lezzet</span>
             </h2>
-            <p class="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-                Taze malzemeleri, geleneksel tarifler ve modern sunum tarzıyla hazırlanan dönerleriyle tanınıyoruz.
+            <p class="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                Kozan'ın en meşhur dönerini, taze malzemeleri ve özel sosları ile keşfedin. 
+                Baykuş Gece Döneri, her zaman açık, her zaman lezzetli!
             </p>
-            <a href="#menu" class="inline-block btn-primary text-white px-8 py-3 rounded-lg font-bold">
-                Menüyü Gör
+            <a href="#menu" class="inline-block px-8 py-4 order-btn text-white font-bold rounded-lg text-lg">
+                Menüyü Gör 🔥
             </a>
         </div>
     </section>
 
     <!-- Menu Section -->
-    <section id="menu" class="py-16 bg-gray-950">
-        <div class="max-w-7xl mx-auto px-4">
-            <h3 class="text-4xl font-black text-center text-white mb-16">
-                <span class="text-red-500">MENÜ</span>MÜZ
-            </h3>
+    <section id="menu" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 section-title">Menümüz</h2>
+            <p class="text-gray-400 mb-12">Taze, lezzetli ve doyurucu seçenekler</p>
 
-            <!-- Gece Döneri Kategorisi -->
+            <!-- Gece Döneri Bölümü -->
             <div class="mb-16">
-                <h4 class="category-title text-2xl mb-8">🌙 BAYKUŞ GECE DÖNERİ</h4>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h3 class="text-3xl font-bold text-red-500 mb-8 flex items-center gap-3">
+                    <span class="text-4xl">🌙</span>
+                    Gece Döneri Spesiyalleri
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Pide Gece Döneri -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Pide Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">200₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Lezzet dolu bir tercih</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Pide Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Gevrek pide ekmek ve etsiz yapı</p>
+                        <p class="text-red-500 font-bold text-xl">200 ₺</p>
                     </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Pide Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">210₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Doyurucu ve leziz</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Pide Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">İki porsiyon gevrek pide</p>
+                        <p class="text-red-500 font-bold text-xl">210 ₺</p>
                     </div>
 
                     <!-- Lavaş Gece Döneri -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">200₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Klasik lezzet</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Yumuşak lavaş ve özel sos</p>
+                        <p class="text-red-500 font-bold text-xl">200 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">İki porsiyon lavaş döneri</p>
+                        <p class="text-red-500 font-bold text-xl">210 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">210₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Tam tat için</p>
+                    <!-- Lavaş Kaşarlı Gece Döneri -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Kaşarlı Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Eritilmiş kaşar peynirli lezzet</p>
+                        <p class="text-red-500 font-bold text-xl">220 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Kaşarlı Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Kaşarın tadı, iki katı keyif</p>
+                        <p class="text-red-500 font-bold text-xl">230 ₺</p>
                     </div>
 
-                    <!-- Kaşarlı Lavaş -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Kaşarlı Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">220₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Peynirli lezzet</p>
+                    <!-- Lavaş Zurna Gece Döneri -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Gece Döneri Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Zurna soslu özel formül</p>
+                        <p class="text-red-500 font-bold text-xl">240 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Gece Döneri Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Zurna tadının iki kat hazzı</p>
+                        <p class="text-red-500 font-bold text-xl">250 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Kaşarlı Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">230₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Ekstra peynirli</p>
+                    <!-- Pide Karamelize Mantarlı -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Pide Karamelize Mantarlı Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Karamelize mantar ve dönerin birleşimi</p>
+                        <p class="text-red-500 font-bold text-xl">230 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Pide Karamelize Mantarlı Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Lüks tada iki porsiyon</p>
+                        <p class="text-red-500 font-bold text-xl">240 ₺</p>
                     </div>
 
-                    <!-- Zurna -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Gece Döneri Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">240₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Müzik gibi lezzet</p>
+                    <!-- Special Gece Döneri -->
+                    <div class="menu-card p-6 rounded-lg hover-lift red-glow">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Special Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Tüm spesiyal malzemeleri içerir ⭐</p>
+                        <p class="text-red-500 font-bold text-xl">250 ₺</p>
                     </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Gece Döneri Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">250₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Şarkılı şarkılı</p>
-                    </div>
-
-                    <!-- Karamelize Mantarlı Pide -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Pide Karamelize Mantarlı</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">230₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Mantarlı özür</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Pide Karamelize Mantarlı</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">240₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Bol mantarlı</p>
-                    </div>
-
-                    <!-- Special Lavaş -->
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Special Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">250₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Özel tarif</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Special Gece Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">260₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Tüm lezzetler bir arada</p>
+                    <div class="menu-card p-6 rounded-lg hover-lift red-glow">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Special Gece Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Kraliçe gibi iki porsiyon ⭐</p>
+                        <p class="text-red-500 font-bold text-xl">260 ₺</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Antakya Döneri Kategorisi -->
-            <div class="mb-16">
-                <h4 class="category-title text-2xl mb-8">🌶️ ANTAKYA DÖNERİ</h4>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Antakya Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">200₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Antakya tadı</p>
+            <!-- Antakya Döneri Bölümü -->
+            <div class="mb-16 pt-8 border-t border-gray-700">
+                <h3 class="text-3xl font-bold text-red-500 mb-8 flex items-center gap-3">
+                    <span class="text-4xl">🌶️</span>
+                    Antakya Döner Seçkisi
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Lavaş Antakya Döneri -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Antakya Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Antakya usulü taze lezzet</p>
+                        <p class="text-red-500 font-bold text-xl">200 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Antakya Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Antakya tadı iki katı</p>
+                        <p class="text-red-500 font-bold text-xl">210 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Antakya Döneri</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">210₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Iki katı lezzet</p>
+                    <!-- Lavaş Antakya Zurna -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Antakya Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Zurna soslu Antakya stili</p>
+                        <p class="text-red-500 font-bold text-xl">240 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Antakya Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Zurnayla Antakya şöleni</p>
+                        <p class="text-red-500 font-bold text-xl">250 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Antakya Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">240₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Antakya zurnas</p>
+                    <!-- Special Antakya Döner -->
+                    <div class="menu-card p-6 rounded-lg hover-lift red-glow">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Special Antakya Döner</h4>
+                        <p class="text-gray-400 text-sm mb-3">Antakya'nın en seçkin lezzeti ⭐</p>
+                        <p class="text-red-500 font-bold text-xl">250 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg hover-lift red-glow">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Special Antakya Döner</h4>
+                        <p class="text-gray-400 text-sm mb-3">Spesyal Antakya tadının iki katı ⭐</p>
+                        <p class="text-red-500 font-bold text-xl">260 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Antakya Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">250₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Müzikli Antakya</p>
+                    <!-- Lavaş Kaşarlı Antakya -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Kaşarlı Antakya Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Kaşar peynirli Antakya usulü</p>
+                        <p class="text-red-500 font-bold text-xl">230 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Kaşarlı Antakya Döneri</h4>
+                        <p class="text-gray-400 text-sm mb-3">Kaşarın ve peynirin tadı</p>
+                        <p class="text-red-500 font-bold text-xl">240 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Special Antakya</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">250₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Özel Antakya</p>
+                    <!-- Karamelize Mantarlı Antakya -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Karamelize Mantarlı Antakya</h4>
+                        <p class="text-gray-400 text-sm mb-3">Karamelize mantar Antakya usulü</p>
+                        <p class="text-red-500 font-bold text-xl">220 ₺</p>
                     </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Special Antakya</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">260₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Antakya'nın en iyisi</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Kaşarlı Antakya</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">230₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Peynirli Antakya</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Kaşarlı Antakya</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">240₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Çift peynirli lezzet</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Karamelize Mantarlı</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">220₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Mantarlı Antakya</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Karamelize Mantarlı</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">230₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Bol mantarlı Antakya</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Karamelize Mantarlı Antakya</h4>
+                        <p class="text-gray-400 text-sm mb-3">Mantar ve Antakya'nın uyumu</p>
+                        <p class="text-red-500 font-bold text-xl">230 ₺</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Eski Usül Kategorisi -->
-            <div class="mb-16">
-                <h4 class="category-title text-2xl mb-8">👴 ESKİ USÜL DÖNER</h4>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Ekmek Eski Usül Döner</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">200₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Eski lezzet</p>
+            <!-- Eski Usül Döner Bölümü -->
+            <div class="mb-16 pt-8 border-t border-gray-700">
+                <h3 class="text-3xl font-bold text-red-500 mb-8 flex items-center gap-3">
+                    <span class="text-4xl">👑</span>
+                    Eski Usül Döner Klasikleri
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ekmek Eski Usül -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Ekmek Eski Usül Döner</h4>
+                        <p class="text-gray-400 text-sm mb-3">Klasik ekmek ve geleneksel tat</p>
+                        <p class="text-red-500 font-bold text-xl">200 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Ekmek Eski Usül Döner</h4>
+                        <p class="text-gray-400 text-sm mb-3">Nostalji iki porsiyon</p>
+                        <p class="text-red-500 font-bold text-xl">210 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Ekmek Eski Usül Döner</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">210₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Iki katı nostalji</p>
+                    <!-- Lavaş Eski Usül Zurna -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Tek Lavaş Eski Usül Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Eski usülün zurna tadı</p>
+                        <p class="text-red-500 font-bold text-xl">240 ₺</p>
                     </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Tek Lavaş Eski Usül Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">240₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Geçmişin sesi</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Çift Lavaş Eski Usül Zurna</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">250₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Geleneksel tat</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Çift Lavaş Eski Usül Zurna</h4>
+                        <p class="text-gray-400 text-sm mb-3">Tradisyon iki kez tatmak</p>
+                        <p class="text-red-500 font-bold text-xl">250 ₺</p>
                     </div>
                 </div>
             </div>
 
-            <!-- İçecekler Kategorisi -->
-            <div>
-                <h4 class="category-title text-2xl mb-8">🥤 İÇECEKLER</h4>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Açık Ayran</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">55₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Taze ve soğuk</p>
+            <!-- İçecekler Bölümü -->
+            <div class="pt-8 border-t border-gray-700">
+                <h3 class="text-3xl font-bold text-red-500 mb-8 flex items-center gap-3">
+                    <span class="text-4xl">🥤</span>
+                    İçecekler
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Ayran -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Açık Ayran</h4>
+                        <p class="text-gray-400 text-sm mb-3">Taze ve soğuk</p>
+                        <p class="text-red-500 font-bold text-xl">55 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Kapalı Ayran</h4>
+                        <p class="text-gray-400 text-sm mb-3">Paketli ayran</p>
+                        <p class="text-red-500 font-bold text-xl">55 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Kapalı Ayran</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">55₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Paketli ayran</p>
+                    <!-- Kola -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Kutu Kola</h4>
+                        <p class="text-gray-400 text-sm mb-3">Soğuk içecek seçimi</p>
+                        <p class="text-red-500 font-bold text-xl">79,99 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">Kutu Kola Fanta</h4>
+                        <p class="text-gray-400 text-sm mb-3">Renkli içecek seçeneği</p>
+                        <p class="text-red-500 font-bold text-xl">79,99 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">1 Litre Kola</h4>
+                        <p class="text-gray-400 text-sm mb-3">Aile için ideal</p>
+                        <p class="text-red-500 font-bold text-xl">99,99 ₺</p>
+                    </div>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">2,5 Litre Kola</h4>
+                        <p class="text-gray-400 text-sm mb-3">Ekonomik paket</p>
+                        <p class="text-red-500 font-bold text-xl">129,99 ₺</p>
                     </div>
 
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Kutu Kola</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">79,99₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Klasik içecek</p>
+                    <!-- Şalgam -->
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">El Yapımı Şalgam Acılı</h4>
+                        <p class="text-gray-400 text-sm mb-3">Geleneksel acılı şalgam</p>
+                        <p class="text-red-500 font-bold text-xl">55 ₺</p>
                     </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">Kutu Kola Fanta</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">79,99₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Renkli seçenek</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">1 Litre Kola</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">99,99₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Daha bol içecek</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">2,5 Litre Kola</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">129,99₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Aile paketi</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">El Yapımı Şalgam Acılı</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">55₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Acılı tadı</p>
-                    </div>
-
-                    <div class="menu-card bg-gray-900 rounded-lg p-5 border-l-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h5 class="text-white font-bold">El Yapımı Şalgam Sade</h5>
-                            <span class="price-badge text-white px-3 py-1 rounded text-sm font-bold">55₺</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Sade ve leziz</p>
+                    <div class="menu-card p-6 rounded-lg">
+                        <h4 class="text-lg font-bold text-white mb-2">El Yapımı Şalgam Sade</h4>
+                        <p class="text-gray-400 text-sm mb-3">Sade şalgam tadı</p>
+                        <p class="text-red-500 font-bold text-xl">55 ₺</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hakkımızda Section -->
-    <section class="gradient-dark py-16">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h3 class="text-3xl font-black text-white mb-4">
-                        Baykuş Gece <span class="text-yellow-400">Döneri</span> Hakkında
-                    </h3>
-                    <p class="text-gray-200 mb-4 leading-relaxed">
-                        Baykuş Gece Döneri, gecelerin en leziz döneri adresi olarak hizmet vermektedir. Taze ve kaliteli malzemeleri kullanarak, geleneksel tariflerle modern sunum tarzını bir araya getiriyoruz.
+                    <h2 class="text-4xl font-bold mb-6 section-title">Hakkımızda</h2>
+                    <p class="text-gray-400 mb-4 text-lg">
+                        Baykuş Gece Döneri, Kozan'ın kalbi Tufanpaşa'da yer alan ve gece boyunca 
+                        hizmet veren bir döner ustası.
                     </p>
-                    <p class="text-gray-200 mb-6 leading-relaxed">
-                        Her ısırıkta hissedebileceğiniz lezzet ve kalite bizim en büyük önceliğimiz. Müşteri memnuniyeti için gece gündüz çalışan ekibimiz, size en iyi hizmeti sunmaya adanmıştır.
+                    <p class="text-gray-400 mb-4 text-lg">
+                        Taze malzeme, özel baharatlar ve yıllarca biriktirilen formüller ile 
+                        hazırlanan dönerlerimiz, her damak tadına hitap etmektedir.
                     </p>
-                    <div class="flex space-x-4">
-                        <div class="bg-gray-900 p-4 rounded-lg">
-                            <i class="fas fa-leaf text-green-400 text-2xl mb-2"></i>
-                            <p class="text-white font-bold">Taze Malzeme</p>
+                    <p class="text-gray-400 mb-6 text-lg">
+                        24 saat açık kapısı ile gece yarısının en iyi çözümü, sabahın ilk ışığında 
+                        hala lezzetli döneri ile tanınırız.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-red-900/30 flex items-center justify-center">
+                                <span class="text-red-500 text-lg">✓</span>
+                            </div>
+                            <span class="text-gray-300">Taze Malzeme</span>
                         </div>
-                        <div class="bg-gray-900 p-4 rounded-lg">
-                            <i class="fas fa-fire text-orange-400 text-2xl mb-2"></i>
-                            <p class="text-white font-bold">Geleneksel Tarif</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-red-900/30 flex items-center justify-center">
+                                <span class="text-red-500 text-lg">✓</span>
+                            </div>
+                            <span class="text-gray-300">24 Saat Açık</span>
                         </div>
-                        <div class="bg-gray-900 p-4 rounded-lg">
-                            <i class="fas fa-heart text-red-500 text-2xl mb-2"></i>
-                            <p class="text-white font-bold">Sevgiyle Hazırlanmış</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-red-900/30 flex items-center justify-center">
+                                <span class="text-red-500 text-lg">✓</span>
+                            </div>
+                            <span class="text-gray-300">Özel Tarifler</span>
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <i class="fas fa-utensils text-6xl text-red-500 mb-6"></i>
-                    <div class="bg-gray-900 p-8 rounded-lg">
-                        <h4 class="text-2xl font-black text-white mb-4">Neden Biz?</h4>
-                        <ul class="text-gray-200 space-y-3">
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Günlük taze et kullanımı</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Hijyen kurallarına uygunluk</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Hızlı ve profesyonel hizmet</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> Uygun fiyatlandırma</li>
-                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i> 24/7 Hizmet</li>
-                        </ul>
+                <div class="relative h-96 rounded-lg overflow-hidden red-glow">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-900/20 to-black/40 flex items-center justify-center">
+                        <div class="text-center">
+                            <span class="text-8xl">🦉</span>
+                            <p class="text-white text-xl font-bold mt-4">Baykuş Gece Döneri</p>
+                            <p class="text-gray-400 mt-2">Kozan'ın Gururu</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- İletişim Section -->
-    <section id="iletisim" class="py-16 bg-gray-950">
-        <div class="max-w-7xl mx-auto px-4">
-            <h3 class="text-4xl font-black text-center text-white mb-16">
-                <span class="text-red-500">İLETİŞİM</span> BİLGİLERİ
-            </h3>
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 px-4 border-t border-gray-700">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 section-title">Rezervasyon</h2>
+            <p class="text-gray-400 mb-12">Hızlı ve kolayca grup yapabilirsiniz</p>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="inline-block bg-red-600 p-4 rounded-full mb-4">
-                        <i class="fas fa-map-marker-alt text-white text-3xl"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-xl mb-2">Adres</h4>
-                    <p class="text-gray-300">
-                        Baykuş Gece Döneri<br>
-                        Lezzet Sokağı No: 42<br>
-                        Şehir, Türkiye
-                    </p>
+            <form class="reservation-form space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Adınız" class="px-4 py-3 rounded-lg" required>
+                    <input type="email" placeholder="E-posta" class="px-4 py-3 rounded-lg" required>
                 </div>
-
-                <div class="text-center">
-                    <div class="inline-block bg-red-600 p-4 rounded-full mb-4">
-                        <i class="fas fa-phone text-white text-3xl"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-xl mb-2">Telefon</h4>
-                    <p class="text-gray-300">
-                        <a href="tel:+905551234567" class="hover:text-yellow-400">+90 555 123 45 67</a><br>
-                        <a href="tel:+905559876543" class="hover:text-yellow-400">+90 555 987 65 43</a>
-                    </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="tel" placeholder="Telefon" class="px-4 py-3 rounded-lg" required>
+                    <input type="number" min="1" max="20" placeholder="Kişi Sayısı" class="px-4 py-3 rounded-lg" required>
                 </div>
-
-                <div class="text-center">
-                    <div class="inline-block bg-red-600 p-4 rounded-full mb-4">
-                        <i class="fas fa-clock text-white text-3xl"></i>
-                    </div>
-                    <h4 class="text-white font-bold text-xl mb-2">Çalışma Saatleri</h4>
-                    <p class="text-gray-300">
-                        Pazartesi - Pazar<br>
-                        18:00 - 04:00<br>
-                        <span class="text-green-400">Açık Konumdayız</span>
-                    </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="date" class="px-4 py-3 rounded-lg" required>
+                    <input type="time" class="px-4 py-3 rounded-lg" required>
                 </div>
-            </div>
-
-            <!-- Sosyal Medya -->
-            <div class="text-center mt-12">
-                <h4 class="text-white font-bold text-xl mb-6">Bizi Takip Edin</h4>
-                <div class="flex justify-center space-x-6">
-                    <a href="#" class="inline-block bg-red-600 p-4 rounded-full hover:bg-red-700 transition">
-                        <i class="fab fa-facebook text-white text-2xl"></i>
-                    </a>
-                    <a href="#" class="inline-block bg-red-600 p-4 rounded-full hover:bg-red-700 transition">
-                        <i class="fab fa-instagram text-white text-2xl"></i>
-                    </a>
-                    <a href="#" class="inline-block bg-red-600 p-4 rounded-full hover:bg-red-700 transition">
-                        <i class="fab fa-twitter text-white text-2xl"></i>
-                    </a>
-                    <a href="#" class="inline-block bg-red-600 p-4 rounded-full hover:bg-red-700 transition">
-                        <i class="fab fa-whatsapp text-white text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rezervasyon Section -->
-    <section id="rezervasyon" class="gradient-dark py-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <h3 class="text-4xl font-black text-center text-white mb-2">
-                Masa <span class="text-yellow-400">Rezervasyonu</span>
-            </h3>
-            <p class="text-center text-amber-100 mb-12">
-                Özel etkinlikleriniz için masa ayırtınız
-            </p>
-
-            <form id="rezervasyonForm" class="bg-gray-900 p-8 rounded-lg shadow-2xl">
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-white font-bold mb-2">Ad Soyadı</label>
-                        <input type="text" required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-white font-bold mb-2">Telefon</label>
-                        <input type="tel" required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-white font-bold mb-2">Tarih</label>
-                        <input type="date" required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-white font-bold mb-2">Saat</label>
-                        <input type="time" required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-white font-bold mb-2">Kişi Sayısı</label>
-                        <select required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                            <option value="">Seçiniz</option>
-                            <option value="1">1 Kişi</option>
-                            <option value="2">2 Kişi</option>
-                            <option value="3">3 Kişi</option>
-                            <option value="4">4 Kişi</option>
-                            <option value="5">5 Kişi</option>
-                            <option value="6">6 Kişi</option>
-                            <option value="7">7+ Kişi</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-white font-bold mb-2">Email</label>
-                        <input type="email" required class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none">
-                    </div>
-                </div>
-
-                <div class="mb-6">
-                    <label class="block text-white font-bold mb-2">Özel İstekler</label>
-                    <textarea rows="4" class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:border-red-500 focus:outline-none" placeholder="Özel taleplarınızı yazınız..."></textarea>
-                </div>
-
-                <button type="submit" class="w-full btn-primary text-white font-bold py-3 rounded-lg">
-                    <i class="fas fa-check mr-2"></i>Masa Ayırt
+                <textarea placeholder="Özel istekleriniz..." rows="5" class="w-full px-4 py-3 rounded-lg"></textarea>
+                <button type="submit" class="w-full py-4 order-btn text-white font-bold rounded-lg text-lg">
+                    Rezervasyonu Onayla 🎉
                 </button>
-
-                <p class="text-gray-400 text-sm mt-4 text-center">
-                    <i class="fas fa-info-circle mr-1"></i>
-                    Rezervasyonunuz tarafımızca onaylandıktan sonra size telefonla dönüş yapılacaktır.
-                </p>
             </form>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 section-title">İletişim & Konum</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-red-500 text-xl">📍</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Adresimiz</h3>
+                            <p class="text-gray-400 text-lg">
+                                Tufanpaşa, Üstün Sk. ASKİ Karşısı<br>
+                                01500 Kozan/Adana
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-red-500 text-xl">📞</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Telefonumuz</h3>
+                            <p class="text-gray-400 text-lg">0541 820 11 12</p>
+                            <p class="text-gray-500 text-sm mt-1">24/7 Hizmet</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-full bg-red-900/30 flex items-center justify-center flex-shrink-0 mt-1">
+                            <span class="text-red-500 text-xl">🕐</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Çalışma Saatleri</h3>
+                            <p class="text-gray-400 text-lg">Her Gün</p>
+                            <p class="text-gray-400 text-lg">Saat 00:00 - 23:59</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="rounded-lg overflow-hidden red-glow h-96">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5234567890123!2d36.92789!3d37.26584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15284d8f8f8f8f8f%3A0x8f8f8f8f8f8f8f8f!2sTufanpa%C5%9Fa%2C%20%C3%9Cst%C3%BCn%20Sk.%20ASK%C4%B0%20Kar%C5%9F%C4%B1s%C4%B1%2C%2001500%20Kozan%2FAdana!5e0!3m2!1str!2str!4v1699999999999" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:none;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="gradient-dark py-8 text-center text-gray-300 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="mb-2">
-                <i class="fas fa-fire text-red-500"></i>
-                © 2024 Baykuş Gece Döneri - Tüm Hakları Saklıdır.
-            </p>
-            <p class="text-sm">
-                Lezzet ve Kalite Adımız İçin
-            </p>
+    <footer class="border-t border-gray-700 py-12 px-4 bg-black/50">
+        <div class="max-w-7xl mx-auto">
+            <!-- Order Button -->
+            <div class="mb-12 text-center">
+                <a href="tel:+905418201112" class="inline-block px-10 py-5 order-btn text-white font-bold rounded-xl text-xl pulse-animate">
+                    Hemen Sipariş Ver 📞 0541 820 11 12
+                </a>
+            </div>
+
+            <!-- Location Info -->
+            <div class="mb-12 bg-gradient-to-r from-red-900/20 to-black/50 p-8 rounded-lg border border-red-900/30">
+                <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                    <span>📍</span> Konum Bilgilerimiz
+                </h3>
+                <p class="text-gray-300 text-lg mb-2">
+                    <span class="font-bold">Tam Adres:</span> Tufanpaşa, Üstün Sk. ASKİ Karşısı, 01500 Kozan/Adana
+                </p>
+                <p class="text-gray-400 text-sm">
+                    Baykuş Gece Döneri, Kozan'ın en güvenilir ve lezzetli döner adresidir.
+                </p>
+            </div>
+
+            <!-- Google Maps Embed -->
+            <div class="mb-8 rounded-lg overflow-hidden red-glow h-96">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.5234567890123!2d36.92789!3d37.26584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15284d8f8f8f8f8f%3A0x8f8f8f8f8f8f8f8f!2sTufanpa%C5%9Fa%2C%20%C3%9Cst%C3%BCn%20Sk.%20ASK%C4%B0%20Kar%C5%9F%C4%B1s%C4%B1%2C%2001500%20Kozan%2FAdana!5e0!3m2!1str!2str!4v1699999999999" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:none;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 py-8 border-t border-gray-700">
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <span class="text-2xl">🦉</span> Baykuş Gece Döneri
+                    </h4>
+                    <p class="text-gray-400 text-sm">
+                        Kozan'ın en meşhur dönerinin adresi. Taze, lezzetli ve doyurucu.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Hızlı Linkler</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#menu" class="hover:text-red-400 transition">Menü</a></li>
+                        <li><a href="#about" class="hover:text-red-400 transition">Hakkımızda</a></li>
+                        <li><a href="#reservation" class="hover:text-red-400 transition">Rezervasyon</a></li>
+                        <li><a href="#contact" class="hover:text-red-400 transition">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">Bize Ulaşın</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>📍 Tufanpaşa, Kozan/Adana</li>
+                        <li>📞 0541 820 11 12</li>
+                        <li>🕐 24 Saat Açık</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center py-6 border-t border-gray-700 text-gray-500 text-sm">
+                <p>&copy; 2024 Baykuş Gece Döneri. Tüm hakları saklıdır. | Kozan'ın Gururu 🦉</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Rezervasyon formu gönderimi
-        document.getElementById('rezervasyonForm').addEventListener('submit', function(e) {
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('.reservation-form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            alert('Rezervasyon başarıyla alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            alert('Rezervasyonunuz alınmıştır! En kısa sürede sizinle iletişime geçeceğiz.');
             this.reset();
         });
 
-        // Smooth scroll navbar linklerine tıklandığında
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    document.getElementById(mobil-menu)?.classList.add('hidden');
-                }
-            });
+        // Navbar background on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            }
         });
     </script>
 </body>
